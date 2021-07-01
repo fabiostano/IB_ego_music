@@ -1,0 +1,69 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title%}
+    <div class="d-flex justify-content-center">
+        <h2 style="margin-bottom:20px">YOU HAVE MADE A PURCHASE</h2>
+    </div>
+
+    {% if mt != 'mt_none' %}
+    <img src="{% static 'musicHint.png' %}" width="150px" style="position: fixed; top: 0; right: 0; border: 0">
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {   // CHART FOR 3 TICKETS
+            var cards = $(".formfield");
+            for (var i = 0; i < cards.length; i++) {
+                var target = Math.floor(Math.random() * cards.length - 1) + 1;
+                var target2 = Math.floor(Math.random() * cards.length - 1) + 1;
+                cards.eq(target).before(cards.eq(target2));
+            }
+        })
+    </script>
+
+        <div class="jumbotron" style="padding-top: 5%"> {# Questionnaire in case of a Purchase #}
+        <h4 style=""> Please state how much you can agree/disagree with the following statements:</h4>
+
+        <div class="formfield">
+            <hr/>
+            {% formfield player.pr_offer %}
+        </div>
+        <div class="formfield">
+            <hr/>
+            {% formfield player.pr_notoffer %}
+        </div>
+        <div class="formfield">
+            <hr/>
+            {% formfield player.pr_urge %}
+        </div>
+        <div class="formfield">
+            <hr/>
+            {% formfield player.pr_thoughts %}
+        </div>
+        <div class="formfield">
+            <hr/>
+            {% formfield player.pr_planned %}
+        </div>
+        <div class="formfield">
+            <hr/>
+            {% formfield player.pr_planned2 %}
+        </div>
+        <div class="formfield">
+            <hr/>
+            {% formfield player.pr_reward %}
+        </div>
+        <div class="formfield">
+            <hr/>
+            {% formfield player.pr_spontaneous %}
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {% next_button %}
+    </div>
+
+{% endblock %}

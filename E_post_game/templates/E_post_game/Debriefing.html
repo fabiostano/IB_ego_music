@@ -1,0 +1,75 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title%}
+    <div class="d-flex justify-content-center">
+        <h2 style="margin-bottom:20px"> EXIT SURVEY </h2>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron" style="padding-top: 5%">
+        <h4> Please state how much you can agree/disagree with the following statements: </h4>
+
+        <div >
+            <hr/>
+            {% formfield player.debriefing9 %}
+        </div>
+        <div>
+            <hr/>
+            {% formfield player.debriefing10 %}
+        </div>
+
+        <div>
+            <hr/>
+            {% formfield player.debriefing12 %}
+        </div>
+
+        <div>
+            <hr/>
+            {% formfield player.debriefing14 %}
+        </div>
+
+        <div class="formfield">
+            <hr/>
+            {% formfield player.debriefing1 %}
+         </div>
+
+        <div class="formfield">
+            <hr/>
+            {% formfield player.debriefing2 %}
+        </div>
+
+        <div class="formfield">
+            <hr/>
+            {% formfield player.debriefing3 %}
+        </div>
+
+        <div>
+            <hr/>
+            {% formfield player.debriefing13 %}
+        </div>
+
+        <div>
+            <hr/>
+            {% formfield player.debriefing11 %}
+        </div>
+
+        <div>
+            <hr/>
+            {% formfield player.debriefing7 %}
+        </div>
+
+        <div>
+            <hr/>
+            {% formfield player.debriefing8 %}
+        </div>
+
+    </div>
+
+    <div class="d-flex justify-content-center" style="clear:both">
+        <button class="otree-btn-next btn btn-primary next-button otree-next-button">Next</button>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title%}
+<div class="d-flex justify-content-center">
+    <h2 style="margin-bottom:20px">SECOND TASK: INSTRUCTIONS</h2>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        window.top.postMessage({
+            tempo : '{{ participant.treatment_mt }}',
+            type : 'pause'
+        }, '*');
+    });
+</script>
+
+<div class="jumbotron">
+        <div class="inst-text">
+            <p> <b>The Task:</b> </p>
+            <p>The Task: You will see an online store, where you get the opportunity to buy products.
+                These products will be at a lower price compared to usual prices in a normal supermarket.
+                (Discounts about 50%)</p>
+            <p>This task will consist of <b>4 rounds.</b></p>
+            <p>In each round, you can decide whether you want to buy one of the two products on offer.
+                You have a limited amount of time to make your decision, which can be seen on the countdown timer
+                at the top of the page.</p>
+            <p>Products will change from round to round and they do not repeat. Accordingly, you will have the
+                opportunity to buy up to 4 different products. After each round, there will be some questions
+                about your decision.</p>
+            <p> After the experiment is finished, one participant per session will be chosen at random to receive
+                the products they bought in the experiment. If you decide to buy a product, the price of the discounted
+                product will be subtracted from your current payout.
+            <p>If you are the chosen participant, you will receive the products you bought after the experiment,
+               and the remainder of your payout will be transferred to your bank account. </p>
+            <p>If you are not chosen, you will receive none of the products you bought,
+                and your payout will be transferred to your bank account.</p>
+        </div>
+</div>
+
+<div class="jumbotron" style="background-color: #e6f7ff">
+    <div class="inst-text">
+        <p> <b>Example A:</b> </p>
+        <p>Suppose your payout from the first task is 12,00€ and you decide to <b>buy one product</b> for 0,40€. After the
+            experiment, you are <b>chosen</b> to receive your product.</p>
+        <p>You will receive your product right after the experiment. The payout transferred
+            to your bank account will be 12,00€ – 0,40€ = 11,60€.</p>
+        <hr>
+        <p> <b>Example B:</b> </p>
+        <p>Suppose your payout from the first task is 12,00€ and you decide to <b>buy one product</b> for 0,40€. After the
+            experiment, you are <b>not chosen</b> to receive your product.</p>
+        <p>You will not receive the product after the experiment. The payout transferred to your
+           bank account will be 12,00€</p>
+    </div>
+</div>
+<div class="d-flex justify-content-center">
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Next</button>
+</div>
+
+{% endblock %}

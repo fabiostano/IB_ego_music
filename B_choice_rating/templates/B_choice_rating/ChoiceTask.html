@@ -1,0 +1,183 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    <div class="progress" style="margin:-30px">
+        <div id="progressbar" class="progress-bar progress-bar-striped progress-bar-info" role="progressbar"
+             aria-valuemin="0" aria-valuemax="66" style="width:1%"> 1 / 66 </div>
+    </div>
+
+    {% if mt != 'mt_none' %}
+    <img src="{% static 'musicHint.png' %}" width="150px" style="position: fixed; top: 0; right: 0; border: 0">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <script>
+        var listL = ['I', 'Q', 'A', 'B', 'A', 'J', 'I', 'M', 'M', 'E', 'M', 'S', 'E', 'F', 'E', 'N', 'I', 'B', 'A',
+                    'A', 'N', 'I', 'E', 'B', 'J', 'F', 'E', 'A', 'B', 'I', 'A', 'I', 'N', 'E', 'B',
+                    'F', 'B', 'F', 'A', 'J', 'E', 'B', 'M', 'S', 'J', 'F', 'Q', 'F', 'X', 'I', 'J',
+                    'A', 'A', 'A', 'J', 'Q', 'E', 'A', 'B', 'M', 'N', 'E', 'B', 'F', 'B', 'F'];
+        var listR = ['N', 'X', 'S', 'S', 'I', 'M', 'M', 'S', 'X', 'Q', 'Q', 'X', 'F', 'X', 'S', 'Q', 'Q',
+                    'Q', 'J', 'Q', 'S', 'S', 'M', 'I', 'N', 'J', 'N', 'M', 'X', 'W', 'E', 'J', 'X',
+                    'W', 'J', 'S', 'N', 'M', 'F', 'X', 'I', 'E', 'N', 'W', 'W', 'W', 'S', 'Q', 'W',
+                    'X', 'S', 'N', 'X', 'W', 'Q', 'W', 'X', 'B', 'W', 'W', 'W', 'J', 'F', 'N', 'M', 'I']
+
+        function listtostatic (c) {
+            switch (c){
+                case "A":
+                    return "{% static "productA.jpg" %}";
+                    break;
+                case "B":
+                    return "{% static "productB.jpg" %}";
+                    break;
+                case "E":
+                    return "{% static "productE.jpg" %}";
+                    break;
+                case "F":
+                    return "{% static "productF.jpg" %}";
+                    break;
+                case "I":
+                    return "{% static "productI.jpg" %}";
+                    break;
+                case "J":
+                    return "{% static "productJ.jpg" %}";
+                    break;
+                case "M":
+                    return "{% static "productM.jpg" %}";
+                    break;
+                case "N":
+                    return "{% static "productN.jpg" %}";
+                    break;
+                case "Q":
+                    return "{% static "productQ.jpg" %}";
+                    break;
+                case "S":
+                    return "{% static "productS.jpg" %}";
+                    break;
+                case "X":
+                    return "{% static "productX.jpg" %}";
+                    break;
+                case "W":
+                    return "{% static "productW.jpg" %}";
+                    break;
+                default:
+                    return "{% static "productA.jpg" %}";
+            }
+        }
+
+        var choices = [];
+        var attention = "";
+        var currprog = 0;
+
+        function nextproduct(choice) {
+            if (currprog > 66) {
+                document.getElementById("nextbtn").style.display = "block";
+                document.getElementById("jumb").style.display = "none";
+                choices.push(choice);
+                choicestocsvline(choices);
+            } else {
+                currprog += 1;
+                percentage = Math.round(currprog / 67 * 100);
+                document.getElementById("progressbar").style.width = percentage.toString() + "%";
+                document.getElementById("progressbar").innerHTML = currprog.toString() + " / 67";
+
+                if (currprog === 33) {
+                    srcleft = "{% static "productA.jpg" %}";
+                    srcright = "{% static "productA.jpg" %}";
+                    document.getElementById("question").innerHTML = "<b> Attention Check: Please choose the left product. </b>";
+                } else {
+                    srcleft = listL.pop();
+                    srcright = listR.pop();
+                }
+
+                if (currprog === 34) {
+                    document.getElementById("question").innerHTML = "<b> Which of the following products would you prefer? </b>";
+                    if (choice === "L") {
+                        choices.push("PASSED");
+                    } else {
+                        choices.push("FAILED");
+                    }
+                } else {
+                    choices.push(choice);
+                }
+
+                document.getElementById("pic1").src = listtostatic(srcleft);
+                document.getElementById("pic2").src = listtostatic(srcright);
+                document.getElementById("pic1u").src = listtostatic(srcleft);
+                document.getElementById("pic2u").src = listtostatic(srcright);
+
+                document.getElementById("ua").style.display = "block";
+                document.getElementById("ub").style.display = "block";
+                document.getElementById("sa").style.display = "none";
+                document.getElementById("sb").style.display = "none";
+
+                setTimeout(function(){
+                    document.getElementById("ua").style.display = "none";
+                    document.getElementById("ub").style.display = "none";
+                    document.getElementById("sa").style.display = "block";
+                    document.getElementById("sb").style.display = "block";
+                }, 5);
+            }
+        }
+
+        function choicestocsvline(choicearray) {
+            csvline = "";
+            for (i in choicearray) {
+                csvline += choices[i];
+                csvline += ",";
+            }
+            document.getElementById("nextbtn").value = csvline.slice(0,-1);
+        }
+
+        function hint() {
+            alert("Please think about your choice deliberately.");
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){
+            window.top.postMessage({
+                tempo : '{{ participant.treatment_mt }}',
+                type : 'play'
+            }, '*');
+        });
+
+
+    </script>
+
+<div class="d-flex justify-content-center">
+    <h2 style="margin-bottom:20px">FIRST TASK</h2>
+</div>
+
+<div id="jumb" class="jumbotron">
+    <div class="row">
+        <h3 id="question"> <b> Which of the following products would you prefer? </b> </h3>
+    </div>
+
+    <div class="row" style="margin-top:20px">
+        <div class="col-1"></div>
+        <div class="col-5 d-flex justify-content-center">
+            <div id="sa" class="selectableimg" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                <img id="pic1" src="{% static "productA.jpg" %}" style="height:300px" onclick=nextproduct("L")>
+            </div>
+            <div id="ua" class="unselectableimg" style="display: none">
+                <img id="pic1u" src="{% static "productA.jpg" %}" style="height:300px" onclick=hint()>
+            </div>
+        </div>
+        <div class="col-5 d-flex justify-content-center">
+            <div id="sb" class="selectableimg" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                <img id="pic2" src="{% static "productB.jpg" %}" style="height:300px" onclick=nextproduct("R")>
+            </div>
+            <div id="ub" class="unselectableimg" style="display: none">
+                <img id="pic2u" src="{% static "productB.jpg" %}" style="height:300px" onclick="hint()">
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <button name="choices" value="" class="btn-primary btn-lg" id="nextbtn" style="display:none">Next</button>
+</div>
+
+{% endblock %}

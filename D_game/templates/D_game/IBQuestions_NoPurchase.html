@@ -1,0 +1,54 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title%}
+     <div class="d-flex justify-content-center">
+        <h2 style="margin-bottom:20px">ROUND DONE!</h2>
+    </div>
+
+    {% if mt != 'mt_none' %}
+    <img src="{% static 'musicHint.png' %}" width="150px" style="position: fixed; top: 0; right: 0; border: 0">
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {   // CHART FOR 3 TICKETS
+            var cards = $(".formfield");
+            for (var i = 0; i < cards.length; i++) {
+                var target = Math.floor(Math.random() * cards.length - 1) + 1;
+                var target2 = Math.floor(Math.random() * cards.length - 1) + 1;
+                cards.eq(target).before(cards.eq(target2));
+            }
+        })
+    </script>
+
+    <div class="jumbotron" style="padding-top: 5%"> {# Questionnaire in case of no Purchase #}
+        <h4 style="margin-bottom: 3%"> Please state how much you agree/disagree with the following statements:</h4>
+
+        <div class="formfield">
+            <hr/>
+            {% formfield player.npr_wrongtype %}
+        </div>
+        <div class="formfield">
+            <hr/>
+            {% formfield player.npr_wrongtype2 %}
+        </div>
+        <div class="formfield">
+            <hr/>
+            {% formfield player.npr_time %}
+        </div>
+        <div class="formfield">
+            <hr/>
+            {% formfield player.np_changedecision %}
+        </div>
+
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {% next_button %}
+    </div>
+
+{% endblock %}

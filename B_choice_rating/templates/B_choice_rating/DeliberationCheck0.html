@@ -1,0 +1,55 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title%}
+    <div class="d-flex justify-content-center">
+        <h2 style="margin-bottom:20px">DELIBERATION CHECK</h2>
+    </div>
+
+    {% if mt != 'mt_none' %}
+    <img src="{% static 'musicHint.png' %}" width="150px" style="position: fixed; top: 0; right: 0; border: 0">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="jumb1" class="jumbotron">
+        <div class="row">
+            <p>
+                <b>Three questions out of the previous 67 questions will now be repeated.</b>
+            </p>
+            <p>
+                You will have to recall at least 2 of the previous choices in order to receive the full payout.
+                A bonus will be given if all 3 of the same choices are recalled.
+                You will have a short questionnaire after this task.
+            </p>
+            <table class="table table-bordered table-sm tablecentercells tablecenterhead">
+              <thead>
+                <tr class="table-dark">
+                  <th scope="col">Correctly Recalled Choices</th>
+                  <th scope="col">Payout</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-light">
+                  <td>0 or 1</td>
+                  <td>- 2€</td>
+                </tr>
+                <tr class="table-default">
+                  <td>2</td>
+                  <td>12€</td>
+                </tr>
+                  <tr class="table-light">
+                  <td>3</td>
+                  <td>+ 3€</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center" style="clear:both">
+        <button class="otree-btn-next btn btn-primary next-button otree-next-button">Next</button>
+    </div>
+
+{% endblock %}

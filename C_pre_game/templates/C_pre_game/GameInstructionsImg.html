@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title%}
+<div class="d-flex justify-content-center">
+    <h2 style="margin-bottom:20px">FIRST TASK - EXAMPLE</h2>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron">
+        <p> How the shopping game will look: </p>
+        <img style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); max-width:100%;max-height:100%" src="{% static 'screenshot_shopping.png' %}">
+    </div>
+
+<div class="d-flex justify-content-center">
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Next</button>
+</div>
+
+{% endblock %}

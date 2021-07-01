@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title%}
+    <div class="d-flex justify-content-center">
+        <h2 style="margin-bottom:20px">YOU ARE DONE!</h2>
+    </div>
+{% endblock %}
+
+<style>
+    .hline {
+    background-color: darkgray;
+    height: 1px;
+    width: 90%;
+    clear: both;
+    }
+</style>
+
+{% block content %}
+
+    <div class="jumbotron" style="padding-top: 5%">
+        <h3 style="text-align:center">Thank you for participating in the experiment. </h3>
+        <h4 style="text-align:center">Please remain seated until everyone is finished and the experimenter concludes the experiment.</h4>
+    </div>
+
+{% endblock %}

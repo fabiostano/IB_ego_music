@@ -1,0 +1,68 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title%}
+    <div class="d-flex justify-content-center">
+        <h2 style="margin-bottom:20px">INTRODUCTION</h2>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <audio id="test_chime" src="{% static "test_chime.mp3" %}"></audio>
+
+    <script>
+        function soundtest() {
+            document.getElementById('tonealert').style.display = "block";
+            document.getElementById('test_chime').play();
+        }
+    </script>
+
+    <div class="jumbotron">
+        <h3 style="text-align:center">Thank you for participating in this experiment. Please read the following instructions carefully.</h3>
+        <p style="text-align:center"> The <strong>results</strong> of our research and <strong>your payout</strong>
+        depend on you understanding the experiment. </p>
+        <div class="hline_w"></div>
+        <p>This experiment will have attention check questions. If you fail them, your payout will be reduced.</p>
+        <p>Otherwise, there are no right or wrong answers in this experiment and we treasure your honesty.</p>
+        <p> This experiment will consist of an entry survey, two tasks (task 1 and task 2) and an exit survey.
+            Each task is followed by a short questionnaire. After the exit survey, you will be directed to a page where
+            you can leave your bank details for the payout transfer. All experimental data is collected <b>anonymously</b>.
+            Payout data is stored <b>separately</b>.
+        </p>
+        <p>
+            The experiment will take <b>approximately 1 hour</b> and will be rewarded with a payout of
+            <b>€12 to €15</b> depending on your performance.
+        </p>
+        </div>
+
+    <div class="jumbotron" style="background-color: #e6f7ff">
+        {% if mt != 'mt_none' %}
+        <p> During most parts of this experiment, you will hear background music. Pages which should play music are
+            marked with a blue badge at the top right corner of the screen. If you see the badge but do not hear
+            music at any point during the experiment, please raise your hand. The experimenter will come and assist you.</p>
+        {% endif %}
+        <p>
+            It is important that you can hear sound during this experiment. Please put on headphones and ensure that you can hear a sound by clicking the speaker icon.
+        <button type=button onclick="soundtest()" class="btn btn-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16">
+              <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
+              <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
+              <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
+            </svg>
+        </button>
+        </p>
+    </div>
+
+    <div id='tonealert' class="alert alert-warning alert-dismissible" style="margin-top:20px;display:none">
+        <strong>Attention:</strong> If you couldn't hear a sound, make sure your headphones are working and your
+        system is not on mute! If you can't make the sound work at all, please raise your hand and an experimenter will come and assist you.
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button class="otree-btn-next btn btn-primary next-button otree-next-button">Next</button>
+    </div>
+
+{% endblock %}

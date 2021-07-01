@@ -1,0 +1,132 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    <div class="progress" style="margin:-30px">
+        <div id="progressbar" class="progress-bar progress-bar-striped progress-bar-info" role="progressbar"
+             aria-valuemin="0" aria-valuemax="66" style="width:1%"> 1 / 66 </div>
+    </div>
+
+    {% if mt != 'mt_none' %}
+    <img src="{% static 'musicHint.png' %}" width="150px" style="position: fixed; top: 0; right: 0; border: 0">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<script>
+    var ratings = [];
+    var prodlist = ["{% static "productA.jpg" %}",
+                    "{% static "productB.jpg" %}",
+                    "{% static "productE.jpg" %}",
+                    "{% static "productF.jpg" %}",
+                    "{% static "productI.jpg" %}",
+                    "{% static "productJ.jpg" %}",
+                    "{% static "productM.jpg" %}",
+                    "{% static "productN.jpg" %}",
+                    "{% static "productQ.jpg" %}",
+                    "{% static "productS.jpg" %}",
+                    "{% static "productX.jpg" %}",
+                    "{% static "productW.jpg" %}",
+                    "{% static "productA.jpg" %}",];
+    var critlist = ["I find this product visually appealing (colour, label, design, etc.).",
+                    "I find this product useful.",
+                    "I have used a product like this before.",
+                    "I would use such a product.",
+                    "I would buy this product as a gift for someone."];
+
+    var currprog = 0;
+
+    function nextquestion(rating) {
+        if (currprog > 66) {
+            document.getElementById("nextbtn").style.display = "block";
+            document.getElementById("jumb").style.display = "none";
+            choicestocsvline(ratings);
+        } else {
+            currprog += 1;
+            percentage = Math.round(currprog / 67 * 100);
+            document.getElementById("progressbar").style.width = percentage.toString() + "%";
+            document.getElementById("progressbar").innerHTML = currprog.toString() + " / 67";
+
+            if (currprog === 33){
+                document.getElementById("question").innerHTML = 'Attention Check: Please choose "Yes".';
+            } else {
+                criterium = critlist[Math.floor(Math.random() * critlist.length)];
+                document.getElementById("question").innerHTML = criterium ;
+            }
+
+            if (currprog === 34){
+                if (rating === "Y") {
+                        ratings.push("PASSED");
+                    } else {
+                        ratings.push("FAILED");
+                    }
+            } else {
+                ratings.push(rating);
+            }
+
+            product = prodlist[Math.floor(Math.random() * prodlist.length)];
+            document.getElementById("productpic").src = product ;
+
+            document.getElementById("btnN").classList.remove("active");
+            document.getElementById("btnN").classList.add("disabled");
+            document.getElementById("btnD").classList.remove("active");
+            document.getElementById("btnD").classList.add("disabled");
+            document.getElementById("btnY").classList.remove("active");
+            document.getElementById("btnY").classList.add("disabled");
+
+            setTimeout(function(){
+                document.getElementById("btnN").classList.remove("disabled");
+                document.getElementById("btnN").classList.add("active");
+                document.getElementById("btnD").classList.remove("disabled");
+                document.getElementById("btnD").classList.add("active");
+                document.getElementById("btnY").classList.remove("disabled");
+                document.getElementById("btnY").classList.add("active");
+            }, 5);
+        }
+    }
+
+    function choicestocsvline(choicearray) {
+            csvline = "";
+            for (i in choicearray) {
+                csvline += ratings[i];
+                csvline += ",";
+            }
+            document.getElementById("nextbtn").value = csvline.slice(0,-1);
+    }
+
+    document.addEventListener("DOMContentLoaded", function(){
+            window.top.postMessage({
+                tempo : '{{ participant.treatment_mt }}',
+                type : 'play'
+            }, '*');
+    });
+</script>
+
+<div class="d-flex justify-content-center">
+    <h2 style="margin-bottom:20px">FIRST TASK</h2>
+</div>
+
+<div id="jumb" class="jumbotron">
+    <div class="row">
+        <div class="d-flex justify-content-center">
+            <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                <img id="productpic" src="{% static "productA.jpg" %}" style="height:300px">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding:20px">
+        <p id="question" style="text-align:center"> I would use such a product. </p>
+        <div class="btn-group d-flex justify-content-center">
+            <button id="btnN" type="button" class="btn btn-primary active" onclick=nextquestion("N")>No</button>
+            <button id="btnD" type="button" class="btn btn-primary active" onclick=nextquestion("-")>I don't know</button>
+            <button id="btnY" type="button" class="btn btn-primary active" onclick=nextquestion("Y")>Yes</button>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <button name="ratings" value="" class="btn-primary btn-lg" id="nextbtn" style="display:none">Next</button>
+</div>
+
+{% endblock %}

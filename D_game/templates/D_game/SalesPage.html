@@ -1,0 +1,185 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+
+<div id="container" style="box-shadow:none; margin-bottom:-30px; margin-top:-30px">
+    <div id="header">
+            <div id="hc1">
+                <div id="hc11"> {# Round Number Counter #}
+                    <h5 style="text-align:center">Round: {{ round_number }} </h5>
+                </div>
+                <div id="hc12"></div>
+                <div id="hc13"> {# Timer Display #}
+                    <div id="timer_wrapper">
+                    <p id="timer"></p>
+                        <script src="timer.js"></script>
+                    </div>
+                </div>
+                <div id="hc14"></div>
+                <div id="hc15"> {# Payout Display #}
+                    <h5 style="text-align:center">Current Payout: {{ payout }} </h5>
+                </div>
+            </div>
+        </div>
+</div>
+
+    {% if mt != 'mt_none' %}
+    <img src="{% static 'musicHint.png' %}" width="150px" style="position: fixed; top: 0; right: 0; border: 0">
+    {% endif %}
+
+
+{% endblock %}
+
+{% block content %}
+
+<script>
+    currID = 1;
+
+    // --------- Ressource definition for all Products ------------
+    const productName_r1 = ["Mars Chocolate Bar, 45g", "Snickers Chocolate Bar, 50g"];
+    const productImage_r1 = ["{% static "1_mars.png" %}", "{% static "1_snickers.png" %}"];
+    const productValue_r1 = [0.40, 0.40];
+
+    const productName_r2 = ["Airwaves Cool Cassis", "Airwaves Menthol & Eucalyptus"];
+    const productImage_r2 = ["{% static "2_airwaves_cc.png" %}", "{% static "2_airwaves_me.png" %}"];
+    const productValue_r2 = [0.40, 0.40];
+
+    const productName_r3 = ["Corny Dreierlei Nuss & Karamell, 35g", "Corny Erdnuss & Vollmilch, 35g"];
+    const productImage_r3 = ["{% static "3_corny_dnk.png" %}", "{% static "3_corny_ev.png" %}"];
+    const productValue_r3 = [0.40, 0.40];
+
+    const productName_r4 = ["Römerquelle Brombeere Limette, 330ml", "Römerquelle Marille Holunderblüte, 330ml"];
+    const productImage_r4 = ["{% static "4_romerq_bl.png" %}", "{% static "4_romerq_mh.png" %}"];
+    const productValue_r4 = [0.40, 0.40];
+
+
+    function clickProduct(id) {
+        document.getElementById("big-image").src = productImage_r{{ round_number }}[id-1];
+        document.getElementById("product-title").innerHTML = productName_r{{ round_number }}[id-1];
+        currID = id;
+
+        document.getElementById("buybutton").value = id;
+    }
+
+    // ------ VISIBLE TIMER ------
+        // (is not completely equal to otree timer, just for more appealing look)
+
+    // Set the date we're counting down to
+    duration = 120;
+
+    var beginning = new Date().getTime();
+    var countDownDate = beginning + duration * 1000;
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for minutes and seconds
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="timer"
+        if (seconds >= 10) {
+            document.getElementById("timer").innerHTML = "0" + minutes + ":" + seconds;
+        } else {
+            document.getElementById("timer").innerHTML = "0" + minutes + ":0" + seconds;
+        }
+        if (distance <= 0) {
+            var timer_over = true;
+            document.getElementById("timer").innerHTML = "00:00";
+
+        }
+    }, 1000);
+
+</script>
+
+<body>
+    <div id="container" style="height:450px">
+        <div style="height:30px"></div>
+        <div id="content" style="height:350px">
+            <div id="img"> {# Big Product Image #}
+                <img id="big-image" src="
+                    {% if round_number == 1 %}
+                        {% static "1_mars.png" %}
+                    {% elif round_number == 2 %}
+                        {% static "2_airwaves_cc.png" %}
+                    {% elif round_number == 3 %}
+                        {% static "3_corny_dnk.png" %}
+                    {% elif round_number == 4 %}
+                        {% static "4_romerq_bl.png" %}
+                    {% endif %}
+                    " style="width:100%;height:100%;" alt="Product">
+            </div>
+            <div id="desc">
+                <div id="title"> {# Product Title #}
+                    <h3 id="product-title" style="float:left">
+                        {% if round_number == 1 %}
+                            Mars Chocolate Bar, 45g
+                        {% elif round_number == 2 %}
+                            Airwaves Cool Cassis
+                        {% elif round_number == 3 %}
+                            Corny Dreierlei Nuss & Karamell, 35g
+                        {% elif round_number == 4 %}
+                            Römerquelle Brombeere Limette, 330ml
+                        {% endif %}</h3>
+                 </div>
+                <div class="hline"></div>
+                <div id="price">
+                    <img id="price-image" src="{% static "price_v2.jpg" %}" style="float:left;width:40%;height:40%;margin-top: 10px;margin-bottom:30px" alt="Prices">
+                    <p></p>
+                </div>
+                <div class="hline"></div>
+                <div id="options">
+                    <button type="button" onclick="clickProduct(1)" class="small-img">
+                        <img src="
+                            {% if round_number == 1 %}
+                                {% static "1_mars.png" %}
+                            {% elif round_number == 2 %}
+                                {% static "2_airwaves_cc.png" %}
+                            {% elif round_number == 3 %}
+                                {% static "3_corny_dnk.png" %}
+                            {% elif round_number == 4 %}
+                                {% static "4_romerq_bl.png" %}
+                            {% endif %}
+                        " style="float:left;width:100%;height:100%" alt="Option 1">
+                    </button>
+                    <button type="button" onclick="clickProduct(2)" class="small-img">
+                        <img src="
+                            {% if round_number == 1 %}
+                                {% static "1_snickers.png" %}
+                            {% elif round_number == 2 %}
+                                {% static "2_airwaves_me.png" %}
+                            {% elif round_number == 3 %}
+                                {% static "3_corny_ev.png" %}
+                            {% elif round_number == 4 %}
+                                {% static "4_romerq_mh.png" %}
+                            {% endif %}
+                        " style="float:left;width:100%;height:100%" alt="Option 2">
+                    </button>
+                </div>
+            </div>
+            <div id="buybox">
+                    <div id="disclaimer">
+                        <p>If you decide to buy this product, you will receive it after the experiment.</p>
+                    </div>
+                    <div id="buy_button">
+                        <button id="buybutton" name="did_buy" value="1" class="buybutton">Buy Now</button>
+                    </div>
+                    <div id="dont_buy_button">
+                        <button name="did_buy" value="0" class="dontbuybutton">Skip</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <p>  </p>
+    </div>
+</body>
+
+
+
+{% endblock %}

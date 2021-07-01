@@ -1,0 +1,65 @@
+{% load otree %}
+
+{% block title%}
+    <div class="d-flex justify-content-center">
+        <h2 style="margin-bottom:20px">DEMOGRAPHIC QUESTIONS</h2>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    .disclaimer {
+        float:left;
+        width:48%;
+        padding:1%;
+        margin-top: 3%;
+    }
+    .formfields {
+        float:right;
+        width:50%;
+    }
+    .hline {
+        width: 1px;
+        height: 100%;
+        background-color: white;
+        float:left;
+        box-shadow: 0 4px 8px 0 white, 0 6px 20px 0 white;
+    }
+</style>
+
+<div class="jumbotron" style="margin-bottom:0;padding:3%;height:350px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <div class="disclaimer">
+        <h1 class="display-4" style="font-size:50px">We need some information before we are done.</h1>
+        <p></p>
+    </div>
+    <div class="hline"></div>
+    <div class="formfields">
+        <div class="age" style="float:left; margin-right:10%">
+            {% formfield player.age %}
+        </div>
+        <div class="gender" style="float:left">
+            {% formfield player.gender %}
+        </div>
+        <div style="clear:both">
+            {% formfield player.occupation %}
+            {% formfield player.money_available %}
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center" style="clear:both">
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Next</button>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title%}
+    <div class="d-flex justify-content-center">
+        <h2 style="margin-bottom:20px">ENTRY SURVEY</h2>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {   // CHART FOR 3 TICKETS
+            var cards = $(".formfield");
+            for (var i = 0; i < cards.length; i++) {
+                var target = Math.floor(Math.random() * cards.length - 1) + 1;
+                var target2 = Math.floor(Math.random() * cards.length - 1) + 1;
+                cards.eq(target).before(cards.eq(target2));
+            }
+        })
+    </script>
+
+    <div class="jumbotron" style="padding-top: 5%">
+        <h4 style=""> Please state how much you agree/disagree with the following statements about your person:</h4>
+
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts1 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts2 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts3 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts4 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts5 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts6 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts7 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts8 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts9 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts10 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts11 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts12 %}
+        </div>
+        <div class="formfield">
+            <hr>
+            {% formfield player.pts13 %}
+        </div>
+
+    </div>
+
+    <div class="d-flex justify-content-center" style="clear:both">
+        <button class="otree-btn-next btn btn-primary next-button otree-next-button">Next</button>
+    </div>
+
+{% endblock %}

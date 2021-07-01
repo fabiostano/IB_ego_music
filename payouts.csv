@@ -1,0 +1,7 @@
+ï»¿Payout,R1,R2,R3,R4,IBAN,First Name,Second Name,ACDecisions,ACItems,DCResultï¿½13.00,Snickers,Airwaves Cool Cassis,NONE,Romerquell Marille,DE12345,76137,Karlsruhe,Deutschland,PASSED,0,3ï¿½12.00,NONE,Airwaves Menthol & Eucalyptus,Corny Erdnuss Volmilch,Romerquell Blaubeere,DE961234,76137,Karlsruhe,Deutschland,PASSED,0,NO DCï¿½11.00,NONE,NONE,NONE,Romerquell Marille,AT961234,76137,Wien,Austria,PASSED,1,1€12.00,NONE,Airwaves Cool Cassis,NONE,NONE,fd,fd,fd,FAILED,0,noDC
+€13.00,NONE,NONE,NONE,Romerquell Blaubeere,Milena ,Jeck,DE11 5001 0517 5425 4348 43,PASSED,2,3
+€12.00,Snickers,Airwaves Cool Cassis,NONE,Romerquell Blaubeere,Carsten,Nickel,at4444444444444,PASSED,2,noDC
+€13.00,Snickers,NONE,NONE,NONE,Lucie Marie,Gudenus,12345,PASSED,2,3
+€13.00,Mars,NONE,Corny Nuss Karamell,NONE,Nour,Jnoub,AT572070604500160231,PASSED,2,3
+€12.00,NONE,NONE,Corny Erdnuss Volmilch,NONE,Regina,Ziegelwanger,1,PASSED,2,noDC
+€12.00,Snickers,Airwaves Cool Cassis,NONE,NONE,34534534,34534534,34534534,FAILED,2,noDC

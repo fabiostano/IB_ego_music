@@ -75,6 +75,7 @@ class ComprehensionCheck1_results(Page):
     def vars_for_template(self):
         return {
             "uq1" : self.player.uq1
+            "mt": self.participant.vars['treatment_mt']
         }
 
 class ComprehensionCheck2_results(Page):
@@ -82,6 +83,7 @@ class ComprehensionCheck2_results(Page):
     def vars_for_template(self):
         return {
             "uq2" : self.player.uq2
+            "mt": self.participant.vars['treatment_mt']
         }
 
 class ComprehensionCheck3_results(Page):
@@ -89,6 +91,7 @@ class ComprehensionCheck3_results(Page):
     def vars_for_template(self):
         return {
             "uq3" : self.player.uq3
+            "mt": self.participant.vars['treatment_mt']
         }
 
 class ComprehensionCheck4_results(Page):
@@ -96,27 +99,31 @@ class ComprehensionCheck4_results(Page):
     def vars_for_template(self):
         return {
             "uq4" : self.player.uq4
+            "mt": self.participant.vars['treatment_mt']
         }
 
 class ComprehensionCheck5_results(Page):
     form_model = 'player'
     def vars_for_template(self):
         return {
-            "uq4" : self.player.uq5
+            "uq5" : self.player.uq5
+            "mt": self.participant.vars['treatment_mt']
         }
 
 class ComprehensionCheck6_results(Page):
     form_model = 'player'
     def vars_for_template(self):
         return {
-            "uq4" : self.player.uq6
+            "uq6" : self.player.uq6
+            "mt": self.participant.vars['treatment_mt']
         }
 
 class ComprehensionCheck7_results(Page):
     form_model = 'player'
     def vars_for_template(self):
         return {
-            "uq4" : self.player.uq7
+            "uq7" : self.player.uq7
+            "mt": self.participant.vars['treatment_mt']
         }
 
-page_sequence = [GameInstructions, GameInstructionsImg]
+page_sequence = [GameInstructions, GameInstructionsImg, ComprehensionCheck1, ComprehensionCheck1_results, ComprehensionCheck2, ComprehensionCheck2_results, ComprehensionCheck3, ComprehensionCheck3_results, ComprehensionCheck4, ComprehensionCheck4_results, ComprehensionCheck5, ComprehensionCheck5_results, ComprehensionCheck6, ComprehensionCheck6_results, ComprehensionCheck7, ComprehensionCheck7_results]

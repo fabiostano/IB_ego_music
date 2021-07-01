@@ -74,7 +74,7 @@ class ComprehensionCheck1_results(Page):
     form_model = 'player'
     def vars_for_template(self):
         return {
-            "uq1" : self.player.uq1
+            "uq1" : self.player.uq1,
             "mt": self.participant.vars['treatment_mt']
         }
 
@@ -82,7 +82,7 @@ class ComprehensionCheck2_results(Page):
     form_model = 'player'
     def vars_for_template(self):
         return {
-            "uq2" : self.player.uq2
+            "uq2" : self.player.uq2,
             "mt": self.participant.vars['treatment_mt']
         }
 
@@ -90,7 +90,7 @@ class ComprehensionCheck3_results(Page):
     form_model = 'player'
     def vars_for_template(self):
         return {
-            "uq3" : self.player.uq3
+            "uq3" : self.player.uq3,
             "mt": self.participant.vars['treatment_mt']
         }
 
@@ -98,7 +98,7 @@ class ComprehensionCheck4_results(Page):
     form_model = 'player'
     def vars_for_template(self):
         return {
-            "uq4" : self.player.uq4
+            "uq4" : self.player.uq4,
             "mt": self.participant.vars['treatment_mt']
         }
 
@@ -106,7 +106,7 @@ class ComprehensionCheck5_results(Page):
     form_model = 'player'
     def vars_for_template(self):
         return {
-            "uq5" : self.player.uq5
+            "uq5" : self.player.uq5,
             "mt": self.participant.vars['treatment_mt']
         }
 
@@ -114,7 +114,7 @@ class ComprehensionCheck6_results(Page):
     form_model = 'player'
     def vars_for_template(self):
         return {
-            "uq6" : self.player.uq6
+            "uq6" : self.player.uq6,
             "mt": self.participant.vars['treatment_mt']
         }
 
@@ -122,7 +122,7 @@ class ComprehensionCheck7_results(Page):
     form_model = 'player'
     def vars_for_template(self):
         return {
-            "uq7" : self.player.uq7
+            "uq7" : self.player.uq7,
             "mt": self.participant.vars['treatment_mt']
         }
 

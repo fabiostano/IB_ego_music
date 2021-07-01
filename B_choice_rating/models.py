@@ -47,7 +47,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelectHorizontal
     )
     pts4 = models.IntegerField(
-        label='I often buy things spontaneously',
+        label='I often buy things spontaneously.',
         choices=[[1, 'Strongly Disagree'], [2, 'Disagree'], [3, 'Neither Agree or Disagree'], [4, 'Agree'],
                  [5, 'Strongly Agree']],
         widget=widgets.RadioSelectHorizontal

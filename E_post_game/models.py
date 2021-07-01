@@ -26,7 +26,7 @@ class Player(BasePlayer):
     # ----- DEMOGRAPHICS ----- #
     money_available = models.StringField(
         label='How much money do you have available for free spending each month?',
-        choices=["0€ - 150€", "150€ - 300€", "300€ - 450€", "450€ - 600€", "600€ - 750€", "750€ - 900€", "< 900€",
+        choices=["0€ - 150€", "150€ - 300€", "300€ - 450€", "450€ - 600€", "600€ - 750€", "750€ - 900€", "> 900€",
                  "Prefer Not To Say"]
     )
     occupation = models.StringField(
